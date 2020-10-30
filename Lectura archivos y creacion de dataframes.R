@@ -1,0 +1,25 @@
+##LECTURA DE ARCHIVOS CSV
+
+file.choose()
+auto= read.csv("E:\\VARIOS\\r-course\\data\\tema1\\auto-mpg.csv")
+
+file.choose() ## Escoger directorio
+
+auto_sin_encabezado= read.csv("E:\\VARIOS\\r-course\\data\\tema1\\auto-mpg-noheader.csv")
+
+
+## LECTURA DE ARCHIVOS XML
+
+url= "E:\\VARIOS\\r-course\\data\\tema1\\cd_catalog.xml"  ##Escogemos el directorio donde esta el archivo XML y se lo asignamos a una variable
+
+xmldoc=xmlParse(url)  ## a la variable url le aplicamos la funcion xmlParse y se la asignamos a xmldoc
+
+nodoraiz=xmlRoot(xmldoc) ##Asignamos nodo raiz
+
+nodoraiz[1] #Con esto comprobamos que hay en la posicion 1
+
+## CREAR DATA FRAME A PARTIR DE XML
+
+datos_cd=xmlSApply(nodoraiz, function(x) xmlSApply(x, xmlValue)) # Crea el dataframe
+
+catalogo_cds=data.frame(t(datos_cd), row.names = NULL) #Traspone columnas y filas para que se vea mas organizado
